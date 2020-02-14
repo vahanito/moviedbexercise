@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import movieSearch from './reducers/movie_reducer';
+import createSagaMiddleware from 'redux-saga';
+import watchSearchMovie from './middleware/movie_api_saga';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavBar from './pages/navbar/NavBar';
+import Search from './pages/search/Search';
 
-function App() {
+const sagaMiddleware = createSagaMiddleware();
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(movieSearch, composeEnhancers(applyMiddleware(sagaMiddleware)));
+
+sagaMiddleware.run(watchSearchMovie);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Route path="*" component={NavBar} />
+        <Switch>
+          <Route path={["/", "/search"]} exact component={Search} />
+          <Route path="/movie/:movieId" exact component={Search} />
+        </Switch>
+      </Router>
+    </Provider>
   );
-}
+};
 
 export default App;
