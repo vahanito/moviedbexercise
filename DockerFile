@@ -10,5 +10,5 @@ FROM node:12.2.0-alpine
 RUN yarn global add serve
 WORKDIR /app
 COPY --from=build /app/build .
-EXPOSE 80
-CMD ["serve", "-p", "80", "-s", "."]
+EXPOSE 8080
+CMD ["serve", "-p", "8080", "-s", "."]
