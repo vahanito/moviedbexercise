@@ -17,7 +17,8 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
-    "prop-types": "latest"
+    "prop-types": "latest",
+    "react-spinners": "^0.8.0"
   },
   "scripts": {
     "start": "react-scripts start",

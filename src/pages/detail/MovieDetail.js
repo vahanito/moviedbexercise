@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { loadMovie } from '../../actions/movie_detail_actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import FavoriteMark from './FavoriteMark';
 
 const MovieDetail = () => {
   const {movieId} = useParams();
@@ -21,7 +22,7 @@ const MovieDetail = () => {
         <div className="media-body">
           <div className="row justify-content-start">
             <div className="col">
-              <h3>{movie.Title}</h3>
+              <h3>{movie.Title} <FavoriteMark /></h3>
             </div>
           </div>
           <div className="row justify-content-start pt-2">
