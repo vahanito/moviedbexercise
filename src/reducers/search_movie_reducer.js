@@ -10,7 +10,7 @@ const movieSearch = (state = initialState, action) => {
     case SEARCH_SUCCESS:
       return {...state, movies: action.payload.Search, error: undefined};
     case SEARCH_ERROR:
-      return {...state, movies: undefined, error: action.payload}
+      return {...state, movies: undefined, error: action.payload};
     default:
       return state;
   }

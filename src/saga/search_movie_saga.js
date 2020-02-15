@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from '@redux-saga/core/effects';
 import { API_SEARCH, SEARCH_INIT } from '../constants';
 import { handleResponse } from '../utils/utils';
-import { searchError, searchSuccess } from '../actions/movie_actions';
+import { searchError, searchSuccess } from '../actions/search_movie_actions';
 
 function* watchSearchMovie() {
   yield takeLatest(SEARCH_INIT, searchMovie);
@@ -16,7 +16,5 @@ function* searchMovie(action) {
     yield put(searchError(err));
   }
 }
-
-
 
 export default watchSearchMovie;

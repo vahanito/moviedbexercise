@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { initSearch } from '../../../actions/movie_actions';
+import { initSearch } from '../../../actions/search_movie_actions';
 import { connect, useDispatch } from 'react-redux';
 
 const Search = () => {
