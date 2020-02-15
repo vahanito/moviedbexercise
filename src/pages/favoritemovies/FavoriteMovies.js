@@ -17,8 +17,7 @@ const FavoriteMovies = () => {
     if (!movies.length) {
       content = <div className="row justify-content-center"><h4>You do not have any favorite movies</h4></div>;
     } else {
-      content = movies.map(movie => <MovieOverview key={movie.imdbID} movie={movie}/>)
-                      .reduce((a, b) => [a, <hr key={a.imdbID + b.imdbID}/>, b]);
+      content = movies.map(movie => <MovieOverview key={movie.imdbID} movie={movie}/>);
     }
   }
   return (

@@ -3,6 +3,8 @@ import { loadMovie } from '../../actions/movie_detail_actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import FavoriteMark from './FavoriteMark';
+import Error from '../../components/Error';
+import Loading from '../../components/Loading';
 
 const MovieDetail = () => {
   const {movieId} = useParams();
@@ -11,18 +13,20 @@ const MovieDetail = () => {
     dispatch(loadMovie(movieId));
   }, []);
   let movie = useSelector(state => state.movieDetail.movie);
-  if (movie === undefined) {
-    return 'Loading...';
+  let error = useSelector(state => state.movieDetail.error);
+  if (error) {
+    return <Error error={error}/>;
   }
   return (
     <div className="container mt-2">
+      <Loading loading={movie === undefined}/>
       {movie &&
       <div className="media">
         <img className="mr-3 shadow" src={movie.Poster} alt={movie.Title + ' poster'}/>
         <div className="media-body">
           <div className="row justify-content-start">
             <div className="col">
-              <h3>{movie.Title} <FavoriteMark /></h3>
+              <h3>{movie.Title} <FavoriteMark/></h3>
             </div>
           </div>
           <div className="row justify-content-start pt-2">

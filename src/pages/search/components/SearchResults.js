@@ -1,21 +1,37 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MovieOverview from './MovieOverview';
+import InfiniteScroll from 'react-infinite-scroller';
+import { loadNextPage } from '../../../actions/search_movie_actions';
+import Error from '../../../components/Error';
 
 const SearchResults = () => {
-  let movies = useSelector(state => state.movieSearch.movies);
-  let error = useSelector(state => state.error);
+  const dispatch = useDispatch();
+  const movies = useSelector(state => state.movieSearch.movies);
+  const error = useSelector(state => state.movieSearch.error);
+  const hasMore = useSelector(state => state.movieSearch.hasMore);
   let content = undefined;
   if (error) {
-    content = <p>{error}</p>;
+    return <Error error={error}/>;
   } else if (movies) {
-    content = movies.map(movie => <MovieOverview key={movie.imdbID} movie={movie}/>)
-                    .reduce((a, b) => [a, <hr key={a.imdbID + b.imdbID}/>, b]);
+    content = movies.map(movie => <MovieOverview key={movie.imdbID} movie={movie}/>);
   }
+  if (content === undefined) {
+    return null;
+  }
+
+  const loadMore = () => {
+    dispatch(loadNextPage());
+  };
+
   return (
-    <>
+    <InfiniteScroll
+      initialLoad={false}
+      hasMore={hasMore}
+      loadMore={loadMore.bind(this)}
+    >
       {content}
-    </>
+    </InfiniteScroll>
   );
 };
 

@@ -16,6 +16,7 @@ const MovieOverview = ({movie}) => {
           {movie.Year}
         </div>
       </div>
+      <hr/>
     </Link>
   );
 };

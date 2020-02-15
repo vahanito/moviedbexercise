@@ -1,15 +1,16 @@
 export const API_SEARCH = "http://omdbapi.com/?apikey=94f18c22&s=";
 export const API_MOVIE_DETAIL = "http://omdbapi.com/?apikey=94f18c22&i=";
-
-export const SEARCH_MOVIE = "SEARCH_MOVIE";
-
-
-
+export const API_PAGE = "&page=";
 
 // ACTION NAMES
 export const SEARCH_INIT = "SEARCH_INIT";
-export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
+export const INIT_SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_ERROR = "SEARCH_ERROR";
+export const UPDATE_SEARCH_VALUE = "UPDATE_SEARCH_VALUE";
+
+export const LOAD_NEXT_PAGE = "LOAD_NEXT_PAGE";
+export const LOAD_NEXT_PAGE_SUCCESS = "LOAD_NEXT_PAGE_SUCCESS";
+export const LOAD_NEXT_PAGE_ERROR = "LOAD_NEXT_PAGE_ERROR";
 
 export const LOAD_FAVORITE_MOVIES = "LOAD_FAVORITE_MOVIES";
 export const LOAD_FAVORITE_MOVIES_SUCCESS = "LOAD_FAVORITE_MOVIES_SUCCESS";
